@@ -172,6 +172,10 @@ public class Main extends Application {
 	   					}
 	    	        }
 	    			Distance0Field.setText(Integer.toString(Dist0));
+	    			Distance1Field.setText(Integer.toString(Dist1));
+	    			Distance2Field.setText(Integer.toString(Dist2));
+	    			Distance3Field.setText(Integer.toString(Dist3));
+	    			Distance4Field.setText(Integer.toString(Dist4));
 	            }
 	        };
 	        
