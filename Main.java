@@ -133,10 +133,50 @@ public class Main extends Application {
 	    	        }	
 	            } 
 	        };
-	        
-	        // when button is pressed 
+	       
 	        showStationButton.setOnAction(showStationEvent);
 			
+	        //Add Calculate HD Event
+	        EventHandler<ActionEvent> calculateHDEvent = new EventHandler<ActionEvent>() { 
+	            public void handle(ActionEvent e) 
+	            {
+	            	String stationChosen = dropBox.getValue();
+	    			int Dist0 = 0;
+	    			int Dist1 = 0;
+	    			int Dist2 = 0;
+	    			int Dist3 = 0;
+	    			int Dist4 = 0;
+	    				
+	    			for (int j = 0; j < stationArray.size(); j++) {
+	    				int stationHamDist = 0;
+	    				for (int i = 0; i < 4; i++) {
+	    					if (stationChosen.charAt(i) != stationArray.get(j).charAt(i)) {
+	   							stationHamDist++;
+	   					    }
+	   				    }
+	   					
+	    				if (stationHamDist == 0) {
+	   						++Dist0;
+	    				}
+	   					else if (stationHamDist == 1) {
+	   						++Dist1;
+	   					}
+	   					else if (stationHamDist == 2) {
+	   						++Dist2;
+	   					}
+	   					else if (stationHamDist == 3) {
+	   						++Dist3;
+	   					}
+	   					else {
+	   						++Dist4;
+	   					}
+	    	        }
+	    			Distance0Field.setText(Integer.toString(Dist0));
+	            }
+	        };
+	        
+	        CalculateHDButton.setOnAction(calculateHDEvent);
+	        
 	        //Add Station Button Event
 	        EventHandler<ActionEvent> addStationEvent = new EventHandler<ActionEvent>() { 
 	            public void handle(ActionEvent e) 
