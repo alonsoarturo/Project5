@@ -1,11 +1,15 @@
 package application;
 	
+import java.util.ArrayList;
+
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -26,6 +30,9 @@ public class Main extends Application {
 			
 			GridPane grid = new GridPane();
 			Scene scene = new Scene(grid);
+			
+			Mesonet.readFile();
+			ArrayList <String> stationArray = Mesonet.getStationArray();
 			
 			//Create all the components********************************************
 			
@@ -50,7 +57,7 @@ public class Main extends Application {
 			
 			//Dropdown Box & Label
 			Label dropBoxLabel = new Label("Compare with:");
-			ChoiceBox dropBox = new ChoiceBox();
+			ComboBox dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray));
 			
 			//Calculate HD Button
 			Button CalculateHDButton = new Button("Calculate HD");
@@ -81,7 +88,10 @@ public class Main extends Application {
 			//Slider and TextField
 			enterHamField.textProperty().bind(enterHamSlider.valueProperty().asString());
 			
-			//
+			//Add List to Choice box
+			
+			
+			//Add Stuff to the Grid************************************************
 			
 			//add components to the grid
 			grid.add(enterHamLabel, 0, 0);
