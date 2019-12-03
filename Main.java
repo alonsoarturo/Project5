@@ -3,6 +3,8 @@ package application;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +23,9 @@ import javafx.scene.layout.GridPane;
 
 
 public class Main extends Application {
+	
+	private ArrayList <String> stationArray;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -34,7 +39,7 @@ public class Main extends Application {
 			Scene scene = new Scene(grid);
 			
 			Mesonet.readFile();
-			ArrayList <String> stationArray = Mesonet.getStationArray();
+			stationArray = Mesonet.getStationArray();
 			
 			//Create all the components********************************************
 			
@@ -96,18 +101,23 @@ public class Main extends Application {
 			//Made it do stuff*****************************************************
 			
 			//Slider and TextField
-			enterHamField.textProperty().bind(enterHamSlider.valueProperty().asString());
+			enterHamSlider.valueProperty().addListener(new ChangeListener<Number>() {
+				public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+					enterHamField.textProperty().setValue(String.valueOf(newValue.intValue()));
+				}
+			});
 			
 			// ListView List from Combobox Station & SliderValue
 			
-			// action event 
+			// Show Station Button action event 
 	        EventHandler<ActionEvent> showStationEvent = new EventHandler<ActionEvent>() { 
 	            public void handle(ActionEvent e) 
 	            { 
-	            	String stationChosen = dropBox.valueProperty().toString();
+	            	String stationChosen = dropBox.getValue();
 	    			int hamDistChosen = enterHamSlider.valueProperty().intValue();
+	    			stationList.getItems().clear();
 	    			
-	    			ArrayList <String> ListViewList = new ArrayList<String>();
+	    			//ArrayList <String> ListViewList = new ArrayList<String>();
 	    				
 	    			for (int j = 0; j < stationArray.size(); j++) {
 	    				int stationHamDist = 0;
@@ -117,13 +127,13 @@ public class Main extends Application {
 	   					    }
 	   				    }
 	   					if (stationHamDist == hamDistChosen) {
-    						ListViewList.add(stationArray.get(j));
+	   						System.out.println(stationArray.get(j));
 	    					stationList.getItems().add(stationArray.get(j));
 	    				}
 	    	        }	
 	            } 
 	        };
-	  
+	        
 	        // when button is pressed 
 	        showStationButton.setOnAction(showStationEvent);
 			
@@ -131,12 +141,14 @@ public class Main extends Application {
 	        EventHandler<ActionEvent> addStationEvent = new EventHandler<ActionEvent>() { 
 	            public void handle(ActionEvent e) 
 	            {
-	            	stationArray.add(addStationField.getText());
-	            	ComboBox dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray));
+	            	String stationToAdd = addStationField.getText();
+	            	dropBox.getItems().add(stationToAdd);
+	            	addStationField.clear();
 	            }
 	        };
 	        
 	        addStationButton.setOnAction(addStationEvent);
+	        
 			//Add Stuff to the Grid************************************************
 			
 			//add components to the grid
@@ -169,8 +181,6 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			
-		    
 	}
 	
 	public static void main(String[] args) {
