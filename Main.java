@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -53,11 +55,12 @@ public class Main extends Application {
 			Button showStationButton = new Button("Show Station");
 		
 			//ListView
-			ListView stationList = new ListView();
+			ListView<String> stationList = new ListView<String>();
+			stationList.setEditable(false);
 			
 			//Dropdown Box & Label
 			Label dropBoxLabel = new Label("Compare with:");
-			ComboBox dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray));
+			ComboBox<String> dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray));
 			
 			//Calculate HD Button
 			Button CalculateHDButton = new Button("Calculate HD");
@@ -83,14 +86,57 @@ public class Main extends Application {
 			TextField Distance4Field = new TextField();
 			Distance4Field.setEditable(false);
 			
+			//Add Station Button
+			Button addStationButton = new Button("Add Station");
+			
+			//Add Station TextField
+			TextField addStationField = new TextField();
+			addStationField.setEditable(true);
+			
 			//Made it do stuff*****************************************************
 			
 			//Slider and TextField
 			enterHamField.textProperty().bind(enterHamSlider.valueProperty().asString());
 			
-			//Add List to Choice box
+			// ListView List from Combobox Station & SliderValue
 			
+			// action event 
+	        EventHandler<ActionEvent> showStationEvent = new EventHandler<ActionEvent>() { 
+	            public void handle(ActionEvent e) 
+	            { 
+	            	String stationChosen = dropBox.valueProperty().toString();
+	    			int hamDistChosen = enterHamSlider.valueProperty().intValue();
+	    			
+	    			ArrayList <String> ListViewList = new ArrayList<String>();
+	    				
+	    			for (int j = 0; j < stationArray.size(); j++) {
+	    				int stationHamDist = 0;
+	    				for (int i = 0; i < 4; i++) {
+	    					if (stationChosen.charAt(i) != stationArray.get(j).charAt(i)) {
+	   							stationHamDist++;
+	   					    }
+	   				    }
+	   					if (stationHamDist == hamDistChosen) {
+    						ListViewList.add(stationArray.get(j));
+	    					stationList.getItems().add(stationArray.get(j));
+	    				}
+	    	        }	
+	            } 
+	        };
+	  
+	        // when button is pressed 
+	        showStationButton.setOnAction(showStationEvent);
 			
+	        //Add Station Button Event
+	        EventHandler<ActionEvent> addStationEvent = new EventHandler<ActionEvent>() { 
+	            public void handle(ActionEvent e) 
+	            {
+	            	stationArray.add(addStationField.getText());
+	            	ComboBox dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray));
+	            }
+	        };
+	        
+	        addStationButton.setOnAction(addStationEvent);
 			//Add Stuff to the Grid************************************************
 			
 			//add components to the grid
@@ -112,7 +158,9 @@ public class Main extends Application {
 			grid.add(Distance3Field, 1, 10);
 			grid.add(Distance4Label, 0, 11);
 			grid.add(Distance4Field, 1, 11);
-
+			grid.add(addStationButton, 0, 12);
+			grid.add(addStationField, 1, 12);
+			
 			grid.setHgap(10);
 		    grid.setVgap(10);
 		    grid.setPadding(new Insets(10, 10, 10, 10));
