@@ -1,7 +1,6 @@
 package application;
 	
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,9 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-//import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-
 
 public class Main extends Application {
 	
@@ -28,12 +25,6 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-//			BorderPane root = new BorderPane();
-//			Scene scene = new Scene(root,400,400);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
 			
 			GridPane grid = new GridPane();
 			Scene scene = new Scene(grid);
@@ -47,6 +38,7 @@ public class Main extends Application {
 			Label enterHamLabel = new Label("Enter Hamming Dist:");		
 			TextField enterHamField = new TextField();
 			enterHamField.setEditable(false);
+			
 
 			//Slider
 			Slider enterHamSlider = new Slider(1, 4, 1);
@@ -66,6 +58,7 @@ public class Main extends Application {
 			//Dropdown Box & Label
 			Label dropBoxLabel = new Label("Compare with:");
 			ComboBox<String> dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray));
+			dropBox.
 			
 			//Calculate HD Button
 			Button CalculateHDButton = new Button("Calculate HD");
@@ -171,6 +164,7 @@ public class Main extends Application {
 	   						++Dist4;
 	   					}
 	    	        }
+	    			
 	    			Distance0Field.setText(Integer.toString(Dist0));
 	    			Distance1Field.setText(Integer.toString(Dist1));
 	    			Distance2Field.setText(Integer.toString(Dist2));
