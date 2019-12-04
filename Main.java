@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,67 +30,115 @@ public class Main extends Application {
 			GridPane grid = new GridPane();
 			Scene scene = new Scene(grid);
 			
-			Mesonet.readFile();
-			stationArray = Mesonet.getStationArray();
+			Mesonet.readFile(); // Method call to read in "Mesonet.txt"
+			stationArray = Mesonet.getStationArray(); // Method call to populate the stationArray with the read in values
 			
 			//Create all the components********************************************
 			
-			//"Enter Hamming Dist" Label & textField
-			Label enterHamLabel = new Label("Enter Hamming Dist:");		
-			TextField enterHamField = new TextField();
+			Label enterHamLabel = new Label("Enter Hamming Dist:");	// Enter Hamming Dist Label 
+			TextField enterHamField = new TextField(); // TextField
 			enterHamField.setEditable(false);
-			
-
-			//Slider
-			Slider enterHamSlider = new Slider(1, 4, 1);
+		
+			Slider enterHamSlider = new Slider(1, 4, 1); // Slider
 			enterHamSlider.setShowTickLabels(true);
 			enterHamSlider.setMinorTickCount(0);
 			enterHamSlider.setMajorTickUnit(1);
 			enterHamSlider.setBlockIncrement(1);
 			enterHamSlider.setSnapToTicks(true);
 			
-			// SHow Station Button
-			Button showStationButton = new Button("Show Station");
+			
+			Button showStationButton = new Button("Show Station"); // Show Station Button
 		
-			//ListView
-			ListView<String> stationList = new ListView<String>();
+			ListView<String> stationList = new ListView<String>(); // ListView
 			stationList.setEditable(false);
 			
-			//Dropdown Box & Label
-			Label dropBoxLabel = new Label("Compare with:");
-			ComboBox<String> dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray));
-			dropBox.
+			Label dropBoxLabel = new Label("Compare with:"); // Drop down Box Label
+			ComboBox<String> dropBox = new ComboBox<String>(FXCollections.observableArrayList(stationArray)); //Drop down Box
 			
-			//Calculate HD Button
-			Button CalculateHDButton = new Button("Calculate HD");
+			Button CalculateHDButton = new Button("Calculate HD"); // Calculate HD Button
 			
 			//Distance Text Fields
-			Label Distance0Label = new Label("Distance 0");		
+			Label Distance0Label = new Label("Distance 0");	// Distance 0
 			TextField Distance0Field = new TextField();
 			Distance0Field.setEditable(false);
 			
-			Label Distance1Label = new Label("Distance 1");		
+			Label Distance1Label = new Label("Distance 1");	// Distance 1
 			TextField Distance1Field = new TextField();
 			Distance1Field.setEditable(false);
 			
-			Label Distance2Label = new Label("Distance 2");		
+			Label Distance2Label = new Label("Distance 2");	// Distance 2
 			TextField Distance2Field = new TextField();
 			Distance2Field.setEditable(false);
 			
-			Label Distance3Label = new Label("Distance 3");		
+			Label Distance3Label = new Label("Distance 3");	// Distance 3
 			TextField Distance3Field = new TextField();
 			Distance3Field.setEditable(false);
 			
-			Label Distance4Label = new Label("Distance 4");		
+			Label Distance4Label = new Label("Distance 4");	// Distance 4
 			TextField Distance4Field = new TextField();
 			Distance4Field.setEditable(false);
 			
-			//Add Station Button
-			Button addStationButton = new Button("Add Station");
+			Button addStationButton = new Button("Add Station"); // Add Station Button
 			
-			//Add Station TextField
-			TextField addStationField = new TextField();
+			TextField addStationField = new TextField(); // Add Station TextField
 			addStationField.setEditable(true);
+			
+			//Creative Part
+			Label firstQLabel = new Label("Enter a Term of Enderment");	// Distance 3
+			TextField firstQField = new TextField();
+			firstQField.setEditable(true);
+			
+			Label secondQLabel = new Label("Enter First Name");	// Distance 3
+			TextField secondQField = new TextField();
+			secondQField.setEditable(true);
+			
+			Label thirdQLabel = new Label("Enter First and Last Name");	// 
+			TextField thirdQField = new TextField();
+			thirdQField.setEditable(true);
+			
+			Label fourthQLabel = new Label("Enter a Place");	// 
+			TextField fourthQField = new TextField();
+			fourthQField.setEditable(true);
+			
+			Label fifthQLabel = new Label("Enter a Day of Week");	// 
+			TextField fifthQField = new TextField();
+			fifthQField.setEditable(true);
+			
+			Label sixthQLabel = new Label("Enter an Adjective");	// 
+			TextField sixthQField = new TextField();
+			sixthQField.setEditable(true);
+			
+			Label seventhQLabel = new Label("Enter a Color");	// 
+			TextField seventhQField = new TextField();
+			seventhQField.setEditable(true);
+			
+			Label eigthQLabel = new Label("Enter an Item of Clothing");	// 
+			TextField eigthQField = new TextField();
+			eigthQField.setEditable(true);
+			
+			Slider numberSlider = new Slider(1, 100, 1); // Slider
+			enterHamSlider.setShowTickLabels(true);
+			enterHamSlider.setMinorTickCount(0);
+			enterHamSlider.setMajorTickUnit(1);
+			enterHamSlider.setBlockIncrement(1);
+			enterHamSlider.setSnapToTicks(true);
+			
+			TextField numberField = new TextField();
+			numberField.setEditable(false);
+			
+			Label ninthQLabel = new Label("Enter 4 Verbs");	// 
+			TextField verb1Field = new TextField();
+			verb1Field.setEditable(true);
+			TextField verb2Field = new TextField();
+			verb2Field.setEditable(true);
+			TextField verb3Field = new TextField();
+			verb3Field.setEditable(true);
+			TextField verb4Field = new TextField();
+			verb4Field.setEditable(true);
+			
+			Button madLibButton = new Button("Get the MadLib!");
+			
+			Popup storyPop = new Popup();
 			
 			//Made it do stuff*****************************************************
 			
@@ -100,8 +149,6 @@ public class Main extends Application {
 				}
 			});
 			
-			// ListView List from Combobox Station & SliderValue
-			
 			// Show Station Button action event 
 	        EventHandler<ActionEvent> showStationEvent = new EventHandler<ActionEvent>() { 
 	            public void handle(ActionEvent e) 
@@ -109,8 +156,6 @@ public class Main extends Application {
 	            	String stationChosen = dropBox.getValue();
 	    			int hamDistChosen = enterHamSlider.valueProperty().intValue();
 	    			stationList.getItems().clear();
-	    			
-	    			//ArrayList <String> ListViewList = new ArrayList<String>();
 	    				
 	    			for (int j = 0; j < stationArray.size(); j++) {
 	    				int stationHamDist = 0;
@@ -129,7 +174,7 @@ public class Main extends Application {
 	       
 	        showStationButton.setOnAction(showStationEvent);
 			
-	        //Add Calculate HD Event
+	        // Calculate HD Event
 	        EventHandler<ActionEvent> calculateHDEvent = new EventHandler<ActionEvent>() { 
 	            public void handle(ActionEvent e) 
 	            {
@@ -175,7 +220,7 @@ public class Main extends Application {
 	        
 	        CalculateHDButton.setOnAction(calculateHDEvent);
 	        
-	        //Add Station Button Event
+	        // Add Station Button Event
 	        EventHandler<ActionEvent> addStationEvent = new EventHandler<ActionEvent>() { 
 	            public void handle(ActionEvent e) 
 	            {
@@ -186,6 +231,54 @@ public class Main extends Application {
 	        };
 	        
 	        addStationButton.setOnAction(addStationEvent);
+	        
+	        // numberSlider Event
+	        numberSlider.valueProperty().addListener(new ChangeListener<Number>() {
+				public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+					numberField.textProperty().setValue(String.valueOf(newValue.intValue()));
+				}
+			});
+	        
+	        // Get the MadLib Button Event
+	        EventHandler<ActionEvent> madLibEvent = new EventHandler<ActionEvent>() { 
+	            public void handle(ActionEvent e) 
+	            {
+	            	String term = firstQField.getText().toUpperCase();
+	            	String firstName = secondQField.getText().toUpperCase();
+	            	String firstLastName = thirdQField.getText().toUpperCase();
+	            	String place = fourthQField.getText().toUpperCase();
+	            	String day = fifthQField.getText().toUpperCase();
+	            	String adj = sixthQField.getText().toUpperCase();
+	            	String color = seventhQField.getText().toUpperCase();
+	            	String cloth = eigthQField.getText().toUpperCase();
+	            	String number = numberField.getText();
+	            	String verb1 = verb1Field.getText().toUpperCase();
+	            	String verb2 = verb2Field.getText().toUpperCase();
+	            	String verb3 = verb3Field.getText().toUpperCase();
+	            	String verb4 = verb4Field.getText().toUpperCase();
+	            	
+	            	String story = "Hey, " + term + ". It's me. What's up? You know, \n"
+	            			+ firstName + ". " + firstLastName + ". From the\n" + 
+	            			place + ". Two " + day + "s ago. I was the " + adj + " guy\nin the " +
+	            			color + " parachute " + cloth + ". I paid the bus boy\n" 
+	            			+ number + " dollars to " + verb1 + " me your information. I was\n" + 
+	            			"wondering if maybe you'd like to " + verb2 + " out with me. Please dont\n" + 
+	            			"call the " + verb3 + " department. Alright, I'll " + verb4 + ". So, thats a\nno, right?";
+	            	
+	            	Label storyLabel = new Label(story);
+	            	storyLabel.setStyle(" -fx-background-color: white;"); 
+	           
+	                // add the label 
+	                storyPop.getContent().add(storyLabel); 
+	                
+	                if (!storyPop.isShowing()) 
+	                    storyPop.show(primaryStage); 
+	                else
+	                    storyPop.hide(); 
+	            }
+	        };
+	        
+	        madLibButton.setOnAction(madLibEvent);
 	        
 			//Add Stuff to the Grid************************************************
 			
@@ -210,6 +303,31 @@ public class Main extends Application {
 			grid.add(Distance4Field, 1, 11);
 			grid.add(addStationButton, 0, 12);
 			grid.add(addStationField, 1, 12);
+			
+			grid.add(madLibButton, 3, 0);
+			grid.add(firstQLabel, 2, 1);
+			grid.add(firstQField, 3, 1);
+			grid.add(secondQLabel, 2, 2);
+			grid.add(secondQField, 3, 2);
+			grid.add(thirdQLabel, 2, 3);
+			grid.add(thirdQField, 3, 3);
+			grid.add(fourthQLabel, 2, 4);
+			grid.add(fourthQField, 3, 4);
+			grid.add(fifthQLabel, 2, 5);
+			grid.add(fifthQField, 3, 5);
+			grid.add(sixthQLabel, 2, 6);
+			grid.add(sixthQField, 3, 6);
+			grid.add(seventhQLabel, 2, 7);
+			grid.add(seventhQField, 3, 7);
+			grid.add(eigthQLabel, 2, 8);
+			grid.add(eigthQField, 3, 8);
+			grid.add(numberSlider, 2, 9);
+			grid.add(numberField, 3, 9);
+			grid.add(ninthQLabel, 2, 10);
+			grid.add(verb1Field, 3, 11);
+			grid.add(verb2Field, 3, 12);
+			grid.add(verb3Field, 3, 13);
+			grid.add(verb4Field, 3, 14);
 			
 			grid.setHgap(10);
 		    grid.setVgap(10);
