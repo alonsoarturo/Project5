@@ -9,6 +9,13 @@ public class Mesonet {
 	
 	private static ArrayList<String> stationArray = new ArrayList();
 	
+	
+	/**
+	 *  readFile() method calls the read method to read in the "Mesonet.txt" file
+	 *  uses try/catch to throw en IOException if there is an error reading in the data
+	 *  from the file.
+	 *  
+	 */
 	public static void  readFile() {
 		
 		try {
@@ -20,6 +27,13 @@ public class Mesonet {
 		
 	}
 	
+	/**
+	 * read(String filename) method takes in a file name to read in. while the lines 
+	 * have a value, the method trims the string and saves it to an ArrayList stationArray
+	 * 
+	 * @param filename
+	 * @throws IOException
+	 */
 	public static void read(String filename) throws IOException {
 		
 		 BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -38,6 +52,11 @@ public class Mesonet {
 	     br.close();
 	}
 	
+	/**
+	 * getStationArray() is a getter method that returns the ArrayList stationArray
+	 * 
+	 * @return ArrayList<String> stationArray
+	 */
 	public static ArrayList<String> getStationArray() {
 		
 		return stationArray;
