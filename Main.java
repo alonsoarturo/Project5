@@ -326,7 +326,7 @@ public class Main extends Application {
 			grid.add(verb1Field, 3, 10);
 			grid.add(verb2Field, 3, 11);
 			grid.add(verb3Field, 3, 12);
-			grid.add(verb4Field, 3, 14);
+			grid.add(verb4Field, 3, 13);
 			
 			grid.setHgap(10);
 		    grid.setVgap(10);
