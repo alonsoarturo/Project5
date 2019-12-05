@@ -324,7 +324,7 @@ public class Main extends Application {
 			grid.add(numberField, 3, 9);
 			grid.add(ninthQLabel, 2, 10);
 			grid.add(verb1Field, 3, 10);
-			grid.add(verb2Field, 3, 12);
+			grid.add(verb2Field, 3, 11);
 			grid.add(verb3Field, 3, 13);
 			grid.add(verb4Field, 3, 14);
 			
