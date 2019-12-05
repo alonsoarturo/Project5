@@ -84,49 +84,49 @@ public class Main extends Application {
 			addStationField.setEditable(true);
 			
 			//Creative Part
-			Label firstQLabel = new Label("Enter a Term of Enderment");	// Distance 3
+			Label firstQLabel = new Label("Enter a Term of Enderment");	// Term of Enderment Label & TextField
 			TextField firstQField = new TextField();
 			firstQField.setEditable(true);
 			
-			Label secondQLabel = new Label("Enter First Name");	// Distance 3
+			Label secondQLabel = new Label("Enter First Name");	// First Name Label & TextField
 			TextField secondQField = new TextField();
 			secondQField.setEditable(true);
 			
-			Label thirdQLabel = new Label("Enter First and Last Name");	// 
+			Label thirdQLabel = new Label("Enter First and Last Name");	// First and Last Name Label & TextField
 			TextField thirdQField = new TextField();
 			thirdQField.setEditable(true);
 			
-			Label fourthQLabel = new Label("Enter a Place");	// 
+			Label fourthQLabel = new Label("Enter a Place");	// Place Label & TextField
 			TextField fourthQField = new TextField();
 			fourthQField.setEditable(true);
 			
-			Label fifthQLabel = new Label("Enter a Day of Week");	// 
+			Label fifthQLabel = new Label("Enter a Day of Week");	// Day of the Week Label & TextField
 			TextField fifthQField = new TextField();
 			fifthQField.setEditable(true);
 			
-			Label sixthQLabel = new Label("Enter an Adjective");	// 
+			Label sixthQLabel = new Label("Enter an Adjective");	// Adjective Label & TextField
 			TextField sixthQField = new TextField();
 			sixthQField.setEditable(true);
 			
-			Label seventhQLabel = new Label("Enter a Color");	// 
+			Label seventhQLabel = new Label("Enter a Color");	// Color Label & TextField
 			TextField seventhQField = new TextField();
 			seventhQField.setEditable(true);
 			
-			Label eigthQLabel = new Label("Enter an Item of Clothing");	// 
+			Label eigthQLabel = new Label("Enter an Item of Clothing");	// Item of Clothing Label & TextField
 			TextField eigthQField = new TextField();
 			eigthQField.setEditable(true);
 			
-			Slider numberSlider = new Slider(1, 100, 1); // Slider
+			Slider numberSlider = new Slider(1, 100, 1); // number Slider 
 			enterHamSlider.setShowTickLabels(true);
 			enterHamSlider.setMinorTickCount(0);
 			enterHamSlider.setMajorTickUnit(1);
 			enterHamSlider.setBlockIncrement(1);
 			enterHamSlider.setSnapToTicks(true);
 			
-			TextField numberField = new TextField();
+			TextField numberField = new TextField(); // number TextField
 			numberField.setEditable(false);
 			
-			Label ninthQLabel = new Label("Enter 4 Verbs");	// 
+			Label ninthQLabel = new Label("Enter 4 Verbs");	// Verb Label & TextFields
 			TextField verb1Field = new TextField();
 			verb1Field.setEditable(true);
 			TextField verb2Field = new TextField();
@@ -136,20 +136,20 @@ public class Main extends Application {
 			TextField verb4Field = new TextField();
 			verb4Field.setEditable(true);
 			
-			Button madLibButton = new Button("Get the MadLib!");
+			Button madLibButton = new Button("Get the MadLib!"); // MadLib Button
 			
-			Popup storyPop = new Popup();
+			Popup storyPop = new Popup(); // MadLib Popup window
 			
 			//Made it do stuff*****************************************************
 			
-			//Slider and TextField
+			//Slider and TextField Listener
 			enterHamSlider.valueProperty().addListener(new ChangeListener<Number>() {
 				public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
 					enterHamField.textProperty().setValue(String.valueOf(newValue.intValue()));
 				}
 			});
 			
-			// Show Station Button action event 
+			// Show Station Button event 
 	        EventHandler<ActionEvent> showStationEvent = new EventHandler<ActionEvent>() { 
 	            public void handle(ActionEvent e) 
 	            { 
@@ -260,10 +260,10 @@ public class Main extends Application {
 	            	String story = "Hey, " + term + ". It's me. What's up? You know, \n"
 	            			+ firstName + ". " + firstLastName + ". From the\n" + 
 	            			place + ". Two " + day + "s ago. I was the " + adj + " guy\nin the " +
-	            			color + " parachute " + cloth + ". I paid the bus boy\n" 
+	            			color + " skin tight " + cloth + ". I paid the bus boy\n" 
 	            			+ number + " dollars to " + verb1 + " me your information. I was\n" + 
-	            			"wondering if maybe you'd like to " + verb2 + " out with me. Please dont\n" + 
-	            			"call the " + verb3 + " department. Alright, I'll " + verb4 + ". So, thats a\nno, right?";
+	            			"wondering if maybe you'd like to " + verb2 + " out with me.\nPlease dont " + 
+	            			"call the " + verb3 + " department. Alright, I'll " + verb4 + ".\nSo, thats a no, right?";
 	            	
 	            	Label storyLabel = new Label(story);
 	            	storyLabel.setStyle(" -fx-background-color: white;"); 
