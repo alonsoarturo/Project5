@@ -124,6 +124,7 @@ public class Main extends Application {
 			
 			TextField numberField = new TextField(); // number TextField
 			numberField.setEditable(false);
+			numberField.setText("Move slider to enter number value");
 			
 			Label ninthQLabel = new Label("Enter 4 Verbs");	// Verb Label & TextFields
 			TextField verb1Field = new TextField();
